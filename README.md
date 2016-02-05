@@ -21,3 +21,10 @@ file_sort.h ：负责初始化和归并排序逻辑部分
 1.txt，2.txt：两个输入文件
 
 result.txt  ：排序结果文件
+
+##运行
+```
+cd src/
+g++ -g  main.cpp file_sort.cpp file_sort.h file.h file.cpp page.h page.cpp
+./a.out 1.txt 2.txt
+```
