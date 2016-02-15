@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
     FileSort file_sort;
 
-    file_sort.Init("1.txt", "2.txt");
+    file_sort.Init(argv[1], argv[2]);
     cout << "Finished Init." << endl;
 
     file_sort.Sort();

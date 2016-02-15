@@ -30,7 +30,7 @@ public:
 
 
 public:
-    static const int PAGE_NUM = 10;
+    static const int PAGE_NUM = 1000;
 
 private:
     vector<int> nums_;

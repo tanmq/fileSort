@@ -53,6 +53,8 @@ bool FileSort::Init(const char* fn1, const char* fn2) {
 
     total_page_ = page_count - 1;
 
+    cout << "total page : " << total_page_ << endl;
+
     fclose(f1);
     fclose(f2);
     file.Close();
@@ -90,7 +92,9 @@ bool FileSort::MergeSort(int step, File &file) {
     int f_index = 1;
     int s_index = f_index+step;
 
+
     while (f_index <= total_page_) {
+        cout << ">>>>>>>>>>>" << f_index << "\t:\t" << s_index << ">>>>>>>>>>>>>>>>>>>" << endl;
 
         int i = 0, j = 0; // record nth page of index
         int a = -1, b = -1; // two road merge
@@ -121,7 +125,7 @@ bool FileSort::MergeSort(int step, File &file) {
                 b = page2.GetAndPopFront();
             }
 
-            if (a > 0 && b > 0) {
+            if (a >= 0 && b >= 0) {
                 if (a > b) {
                     page3.Push(b);
                     b = -1;
@@ -129,15 +133,16 @@ bool FileSort::MergeSort(int step, File &file) {
                     page3.Push(a);
                     a = -1;
                 }
-            } else if (a > 0 && b < 0) {
+            } else if (a >= 0 && b < 0) {
                 page3.Push(a);
                 a = -1;
-            } else if (a < 0 && b > 0) {
+            } else if (a < 0 && b >= 0) {
                 page3.Push(b);
                 b = -1;
             } else {
                 if (!page3.Empty()) {
                     result.WritePage(page3);
+                    break;
                 }
             }
 
@@ -148,11 +153,11 @@ bool FileSort::MergeSort(int step, File &file) {
             
         }
 
-        if (a > 0) {
+        if (a >= 0) {
             page3.Push(a);
         }
 
-        if (b > 0) {
+        if (b >= 0) {
             page3.Push(b);
         }
 
